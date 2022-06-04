@@ -11,6 +11,8 @@ namespace CensusAnalyserTest
         string IndianStateCensusHeaders = "State,Population,AreaInSqKm,DensityPerSqKm";
         string IndianStateCensusHeaders2 = "StaTe,populaTion,areaInSqKm,densiTyPerSqKm";
         string IndiaStateCodeHeaders = "SrNo,State Name,TIN,StateCode";
+        string IndiaStateCodeHeaders2 = "Srno,StaTe name,Tin,staTeCode";
+
 
 
         string IndianStateCensusFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaStateCensusData.csv";
@@ -20,6 +22,8 @@ namespace CensusAnalyserTest
 
         string IndiaStateCodeFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaStateCode.csv";
         string IndiaStateCodeWrongFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaState.csv";
+        string StateIncorrectTxtFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\StateCode.txt";
+
 
 
 
@@ -124,5 +128,18 @@ namespace CensusAnalyserTest
             }
         }
 
+        //Sad Test Case 2.3 : if the type is incorrect then exception is raised.
+        [Test]
+        public void GivenStateIncorrectTxtFile_For_ShouldThrowCustomException()
+        {
+            try
+            {
+                stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, StateIncorrectTxtFilePath, IndiaStateCodeHeaders);
+            }
+            catch (CensusAnalyserException e)
+            {
+                Assert.AreEqual("Invalid File Type", e.Message);
+            }
+        }
     }
 }
