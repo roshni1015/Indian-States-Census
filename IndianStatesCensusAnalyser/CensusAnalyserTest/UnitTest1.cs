@@ -158,5 +158,18 @@ namespace CensusAnalyserTest
                 Assert.AreEqual("File Contains Wrong Delimiter", e.Message);
             }
         }
+        //Sad Test Case 2.5 : if the header is incorrect then exception is raised.
+        [Test]
+        public void GivenIndianStateWrongHeader_For_ShouldThrowCustomException()
+        {
+            try
+            {
+                stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, IndiaStateCodeFilePath, IndiaStateCodeHeaders2);
+            }
+            catch (CensusAnalyserException e)
+            {
+                Assert.AreEqual("Incorrect header in Data", e.Message);
+            }
+        }
     }
 }
