@@ -9,8 +9,12 @@ namespace CensusAnalyserTest
     {
         
         string IndianStateCensusHeaders = "State,Population,AreaInSqKm,DensityPerSqKm";
+        string IndianStateCensusHeaders2 = "StaTe,populaTion,areaInSqKm,densiTyPerSqKm";
+
         string IndianStateCensusFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaStateCensusData.csv";
         string wrongHeaderIndianCensusFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaState.csv";
+        string IncorrectTxtFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\Incorrect.txt";
+
 
 
         CensusAnalyser censusAnalyser;
@@ -45,6 +49,20 @@ namespace CensusAnalyserTest
             catch (CensusAnalyserException e)
             {
                 Assert.AreEqual("File Not Found", e.Message);
+            }
+        }
+
+        //Sad Test Case 1.3 : if the type is incorrect then exception is raised.
+        [Test]
+        public void GivenIncorrectTxtFile_For_ShouldThrowCustomException()
+        {
+            try
+            {
+                totalRecord = censusAnalyser.LoadCensusData(Country.INDIA, IncorrectTxtFilePath, IndianStateCensusHeaders);
+            }
+            catch (CensusAnalyserException e)
+            {
+                Assert.AreEqual("Invalid File Type", e.Message);
             }
         }
     }
