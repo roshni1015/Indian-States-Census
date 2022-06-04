@@ -13,9 +13,9 @@ namespace IndianStatesCensusAnalyser.POCO
         public string state;
         public int tin;
         public string stateCode;
-        public long population;
-        public long area;
-        public long density;
+        public string population;
+        public string area;
+        public string density;
         public long housingUnits;
         public double totalArea;
         public double waterArea;
