@@ -7,7 +7,7 @@ namespace CensusAnalyserTest
 {
     public class Tests
     {
-        
+
         string IndianStateCensusHeaders = "State,Population,AreaInSqKm,DensityPerSqKm";
         string IndianStateCensusHeaders2 = "StaTe,populaTion,areaInSqKm,densiTyPerSqKm";
 
@@ -77,6 +77,20 @@ namespace CensusAnalyserTest
             catch (CensusAnalyserException e)
             {
                 Assert.AreEqual("File Contains Wrong Delimiter", e.Message);
+            }
+        }
+        //Sad Test Case 1.5 : if the header is incorrect then exception is raised.
+
+        [Test]
+        public void GivenWrongHeader_For_ShouldThrowCustomException()
+        {
+            try
+            {
+                totalRecord = censusAnalyser.LoadCensusData(Country.INDIA, IndianStateCensusFilePath, IndianStateCensusHeaders2);
+            }
+            catch (CensusAnalyserException e)
+            {
+                Assert.AreEqual("Incorrect header in Data", e.Message);
             }
         }
     }
