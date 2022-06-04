@@ -19,6 +19,8 @@ namespace CensusAnalyserTest
         string DelimiterIndiaStateCensusDataFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\DelimiterIndiaStateCensusData.csv";
 
         string IndiaStateCodeFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaStateCode.csv";
+        string IndiaStateCodeWrongFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaState.csv";
+
 
 
         CensusAnalyser censusAnalyser;
@@ -102,13 +104,25 @@ namespace CensusAnalyserTest
         //Use case - 2
         //Happy Test Case 2.1 : the records are checked
         [Test]
-        public void GivenIndiaStateCodeFile_WhenReaded_ShouldReturnStateCodeCount()
+        public void GivenIndiaStateCodeFile_For_ReturnDataFile()
         {
             stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, IndiaStateCodeFilePath, IndiaStateCodeHeaders);
             Assert.AreEqual(37, stateRecord.Count);
         }
 
-
+        //Sad Test Case 2.2 : to verify if the exception is raised.
+        [Test]
+        public void GivenIndiaStateWrongFilePath_For_ReturnException()
+        {
+            try
+            {
+                stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, IndiaStateCodeWrongFilePath, IndiaStateCodeHeaders);
+            }
+            catch (CensusAnalyserException e)
+            {
+                Assert.AreEqual("File Not Found", e.Message);
+            }
+        }
 
     }
 }
