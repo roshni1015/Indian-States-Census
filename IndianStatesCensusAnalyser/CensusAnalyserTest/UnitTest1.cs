@@ -10,11 +10,16 @@ namespace CensusAnalyserTest
 
         string IndianStateCensusHeaders = "State,Population,AreaInSqKm,DensityPerSqKm";
         string IndianStateCensusHeaders2 = "StaTe,populaTion,areaInSqKm,densiTyPerSqKm";
+        string IndiaStateCodeHeaders = "SrNo,State Name,TIN,StateCode";
+
 
         string IndianStateCensusFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaStateCensusData.csv";
         string wrongHeaderIndianCensusFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaState.csv";
         string IncorrectTxtFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\Incorrect.txt";
         string DelimiterIndiaStateCensusDataFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\DelimiterIndiaStateCensusData.csv";
+
+        string IndiaStateCodeFilePath = @"C:\Users\Admin\source\c#\Indian-States-Census\IndianStatesCensusAnalyser\IndianStatesCensusAnalyser\IndiaStateCode.csv";
+
 
         CensusAnalyser censusAnalyser;
         Dictionary<string, CensusDTO> totalRecord;
@@ -93,5 +98,7 @@ namespace CensusAnalyserTest
                 Assert.AreEqual("Incorrect header in Data", e.Message);
             }
         }
+        
+
     }
 }
