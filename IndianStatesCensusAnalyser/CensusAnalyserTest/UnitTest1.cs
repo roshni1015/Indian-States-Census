@@ -98,7 +98,17 @@ namespace CensusAnalyserTest
                 Assert.AreEqual("Incorrect header in Data", e.Message);
             }
         }
-        
+
+        //Use case - 2
+        //Happy Test Case 2.1 : the records are checked
+        [Test]
+        public void GivenIndiaStateCodeFile_WhenReaded_ShouldReturnStateCodeCount()
+        {
+            stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, IndiaStateCodeFilePath, IndiaStateCodeHeaders);
+            Assert.AreEqual(37, stateRecord.Count);
+        }
+
+
 
     }
 }
